@@ -2,7 +2,7 @@
 <html>
 <body>
 <h1>Leonardo API</h1>
-<p>Token counter test code<p>
+<p>Get images test<p>
 <br>
 <textarea name="text" id="mytext" cols="70" rows="1"></textarea>
 
@@ -29,8 +29,22 @@ function leonardo(){
     .catch(err => console.error(err));
 }
 
+
+function secondApi(){
+ const option2 = {
+  method: 'GET',
+  headers: {accept: 'application/json',authorization: `Bearer ${leoApiKey}}
+ };
+
+ fetch('https://cloud.leonardo.ai/api/rest/v1/generations/'+leo, option2)
+  .then(response => response.json())
+  .then(data => {elem=data.generations_by_pk.generated_images[0].url}
+ }
+ 
 elem.value="Starting ..."
 leonardo()
+setTimeout(secondApi,8000) 
+
 
 </script>
 </body>
