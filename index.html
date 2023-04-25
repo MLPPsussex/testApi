@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Leonardo API</h1>
+<p>Token counter test code<p>
+<br>
+<textarea name="text" id="mytext" cols="70" rows="1"></textarea>
+
+<script>
+var elem=document.getElementById('mytext')
+var leoCredits,leoCredMax,leo=""
+var leoApiKey=prompt("Please enter your Api Key")
+
+
+function leonardo(){
+ const option = {
+  method: 'POST',
+  headers: {accept: 'application/json','content-type': 'application/json',authorization: `Bearer ${leoApiKey}`
+ },
+ body: JSON.stringify({prompt: "panda on a bike",
+  modelId:"b820ea11-02bf-4652-97ae-9ac0cc00593d", width: 512, height: 512,
+  scheduler: "LEONARDO", num_inference_steps: 30, sd_version: 'v2'})
+ };
+
+  fetch('https://cloud.leonardo.ai/api/rest/v1/generations', option)
+    .then(response => response.json())
+    .then(data => {leo=data.sdGenerationJob.generationId;
+                elem.value="SeriesID "+leo})
+    .catch(err => console.error(err));
+}
+
+elem.value="Starting ..."
+leonardo()
+
+</script>
+</body>
+</html>
