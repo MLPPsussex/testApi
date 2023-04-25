@@ -38,7 +38,7 @@ function secondApi(){
 
  fetch('https://cloud.leonardo.ai/api/rest/v1/generations/'+leo, option2)
   .then(response => response.json())
-  .then(data => {elem=data.generations_by_pk.generated_images[0].url}
+  .then(response => {elem=response.generations_by_pk.generated_images[0].url})
  }
  
 elem.value="Starting ..."
